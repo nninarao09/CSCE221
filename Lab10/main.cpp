@@ -15,6 +15,7 @@ void print_stack_information(Node* head) {
 }
 
 int main() {
+	//tevfkhgdvdvf
    struct Node* head = NULL;
 
    print_stack_information(head);
