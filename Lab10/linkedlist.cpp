@@ -16,7 +16,7 @@ using namespace std;
  * Lab10 Part 1: Implement push and print functions for creating
  * a linked list.
 */
-Node* push(Node* head, int new_data) { 
+Node* push(Node** head, int new_data) { 
    /*
     * Implement push function to add a new element to the linked list
     *
@@ -30,7 +30,11 @@ Node* push(Node* head, int new_data) {
     *       point to 4.
    */
 
-   // Your implementation here
+	struct Node* temp = new Node();
+	
+	temp->data = new_data;
+	temp->next = *head;
+	*head = temp;
 
 }
 
@@ -43,9 +47,15 @@ void print(Node* head) {
     *
     * E.g.  Print linked list like this: 4->3->2->1->NULL
    */
-
-   // Your implementation here
-
+  
+	Node* temp = new Node();
+	temp = head;
+	
+	while(temp != NULL){
+		cout << temp->data << "->";
+		temp = temp->next;
+	}
+	cout << "NULL" << endl;
 }
 
 
@@ -64,7 +74,13 @@ bool isEmpty(Node* head) {
     * returns: bool i.e. If empty return true else return false
    */
 
-   // Your implementation here
+    if(head != NULL){
+	   return false;
+    }
+    else{
+	  return true;
+    }
+
 
 }
 
@@ -75,8 +91,16 @@ int size(Node* head) {
     * input parameter:   pointer to head of stack
     * returns: size of stack. If empty, return 0
    */
-
-   // Your implementation here
+	int size = 0;
+	
+	Node* temp = new Node();
+	temp = head;
+	
+	while(temp != NULL){
+		size++;
+		temp = temp->next;	
+	}
+	return size;
 
 }
 
@@ -90,8 +114,15 @@ int top(Node* head) {
     * E.g.  If stack was 3->2->1->NULL then top should return 3
    */
 
-   // Your implementation here
-
+	Node* temp = new Node();
+	temp = head;
+	int top;
+	
+	if(temp != NULL){
+		top = temp->data;
+	}
+	
+	return top;
 }
 
 Node* pop(Node* head) {
@@ -106,8 +137,16 @@ Node* pop(Node* head) {
     *       be 3->2->1->NULL with head pointing to 4
    */
 
-   // Your implementation here
-
+	Node* temp = new Node();
+	temp = head;
+	int top;
+	
+	while(temp != NULL){
+		temp = temp->next;
+	}
+	top = temp->data
+	
+	return top;
 }
 
 
