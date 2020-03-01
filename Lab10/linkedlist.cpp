@@ -16,7 +16,7 @@ using namespace std;
  * Lab10 Part 1: Implement push and print functions for creating
  * a linked list.
 */
-Node* push(Node** head, int new_data) { 
+Node* push(Node* head, int new_data) { 
    /*
     * Implement push function to add a new element to the linked list
     *
@@ -30,11 +30,14 @@ Node* push(Node** head, int new_data) {
     *       point to 4.
    */
 
-	struct Node* temp = new Node();
+	
+	Node* temp = new Node();
 	
 	temp->data = new_data;
-	temp->next = *head;
-	*head = temp;
+	temp->next = head;
+	head = temp;
+	
+	return temp;
 
 }
 
@@ -50,8 +53,8 @@ void print(Node* head) {
   
 	Node* temp = new Node();
 	temp = head;
-	
-	while(temp != NULL){
+		
+	while(temp != NULL){ 
 		cout << temp->data << "->";
 		temp = temp->next;
 	}
@@ -91,6 +94,7 @@ int size(Node* head) {
     * input parameter:   pointer to head of stack
     * returns: size of stack. If empty, return 0
    */
+	
 	int size = 0;
 	
 	Node* temp = new Node();
@@ -137,16 +141,12 @@ Node* pop(Node* head) {
     *       be 3->2->1->NULL with head pointing to 4
    */
 
-	Node* temp = new Node();
+   	Node* temp = new Node();
 	temp = head;
-	int top;
+	head = head->next;
+	delete temp;
 	
-	while(temp != NULL){
-		temp = temp->next;
-	}
-	top = temp->data
-	
-	return top;
+	return head; 
 }
 
 
@@ -162,7 +162,23 @@ Node* middle_element(Node* head) {
     *      For 5->4->3->2->1->NULL, return node with value 3 (Odd size)
    */
 
-   // Your implementation here
+	int size = 0;
+	
+	Node* temp = new Node();
+	temp = head;
+	
+	while(temp != NULL){
+		size++;
+		temp = temp->next;	
+	}
+	
+	
+	int middle = size/2;
+	for(int i=0; i<middle; ++i){
+		head = head->next;
+	}
+	
+	return head;
 
 }
 
@@ -179,6 +195,22 @@ Node* remove_middle_element(Node* head, Node* middle_node) {
     *      linked list will become 5->4->2->1->NULL
    */
 
-   // Your implementation here
+	int size = 0;
+	
+	Node* temp = new Node();
+	temp = head;
+	
+	while(temp != NULL){
+		size++;
+		temp = temp->next;	
+	}
+	
+	
+	int middle = size/2;
+	for(int i=0; i<middle; ++i){
+		head = head->next;
+	}
+	
+	return head;
 
 }
