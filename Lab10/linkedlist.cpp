@@ -209,15 +209,21 @@ Node* remove_middle_element(Node* head, Node* middle_node) {
 	
 	int middle = size/2;
 	
-	for(int i=0; i<middle-1; ++i){
-		prev = head->next;
+	if(middle<=1){
+		prev = head;
+	}
+	else{
+		for(int i=0; i<middle-1; ++i){
+			prev = head->next;
+		}
 	}
 	
-	
+
 	prev->next = middle_node->next;
-	
+		
 	
 	delete middle_node;
 
 	return head;
+
 }
