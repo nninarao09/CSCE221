@@ -195,6 +195,7 @@ Node* remove_middle_element(Node* head, Node* middle_node) {
     *      linked list will become 5->4->2->1->NULL
    */
 
+	Node* prev = new Node();
 	int size = 0;
 	
 	Node* temp = new Node();
@@ -207,10 +208,16 @@ Node* remove_middle_element(Node* head, Node* middle_node) {
 	
 	
 	int middle = size/2;
-	for(int i=0; i<middle; ++i){
-		head = head->next;
+	
+	for(int i=0; i<middle-1; ++i){
+		prev = head->next;
 	}
 	
-	return head;
+	
+	prev->next = middle_node->next;
+	
+	
+	delete middle_node;
 
+	return head;
 }
