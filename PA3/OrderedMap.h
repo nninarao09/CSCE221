@@ -107,12 +107,14 @@ class OrderedMap
      */
     int hashFunction( const Key & key ) {
 		int number =0;
+		int hash=0;
 		
 		for(int i=0; i<key.size(); ++i){
-			number=number + int(key[i])*7;
+			number=number + int(key[i])*3;
 		}
+		hash = number%MAP_MAX_SIZE;
 		
-		return number%MAP_MAX_SIZE;
+		return hash;
     }
 
     /** Q 4.2
@@ -128,14 +130,13 @@ class OrderedMap
 		
 		
 		if(t->down==NULL){
-			//cout << "Firys" << key << " " << value <<endl;
+			
 			KeyNode* keyDown = new KeyNode(hash_key, NULL, NULL);
 			t->down = keyDown;
 			keyDown->down = NULL;
 			
 			ValueNode* Node = new ValueNode(key, value, NULL);
 			t->down->right = Node;
-			
 			Node->right = NULL;
 			
 		}
@@ -147,36 +148,28 @@ class OrderedMap
 					
 					ValueNode* tempVal;
 					
-					//cout << temp->right->value << endl;
 					while(temp->right != NULL){
-						//cout << temp->right->value << endl;
 						if (temp->right->right == NULL){
 							tempVal = temp->right;
 							break;
 						}
 						temp->right = temp->right->right;
-						//cout << "1" << endl;
 					}
 					
 					ValueNode* Node = new ValueNode(key, value, NULL);
 					tempVal->right = Node;
 					Node->right = NULL;
 					return;
-					//cout << tempVal->value << temp->right->value << endl;
 				}
 				else{
 					
-					//cout << hash_key;
-					//cout << " temp hash key " << temp->hash_key << endl;
 					
 						
 						if (hash_key < temp->hash_key){
 							
 							KeyNode* NewNode = new KeyNode(hash_key, NULL, NULL);
-							//cout << temp->hash_key << endl;
 							NewNode->down = temp;
 							prev->down = NewNode;
-							//cout << temp->hash_key << endl;
 							
 							ValueNode* NewValueNode = new ValueNode(key, value, NULL);
 							NewNode->right = NewValueNode;
@@ -188,8 +181,6 @@ class OrderedMap
 					
 						
 						if (temp->down == NULL) {
-				//cout << "adding a new key node at the end " << hash_key << endl;
-							//cout << temp->hash_key << endl;
 							
 							KeyNode* NewNode = new KeyNode(hash_key, NULL, NULL);
 							temp->down = NewNode;
@@ -201,21 +192,16 @@ class OrderedMap
 							return;
 						}
 						else {
-							//cout << temp->hash_key << endl;
 							prev = temp;
 							temp = temp->down;
 							
-							//cout << "after moving down key node " << temp->hash_key << endl;
 						}
 					
 				}
 				
-			  //temp = temp->down;
 			}
 			
 		}
-		
-		//cout << "hash key " << hash_key << endl;
 		
     }
 

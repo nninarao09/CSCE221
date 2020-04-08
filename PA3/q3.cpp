@@ -29,11 +29,9 @@ int main()
    doubleHash = rand()%tableSize;
   }while (doubleHash < tableSize/10 && doubleHash%tableSize==0);
 
-  //cout << "double hash value " << doubleHash << endl;
   while(count < tableSize && !fail)
   {
     x= rand()%tableSize;// value to insert
-	//cout << "x value " << x << endl;
 	
 	quadInc=insertQuad(x,quad);
 	if (quadInc < 0)
@@ -77,13 +75,11 @@ int insertLinear(int x, vector<int> & linear)
 	
 	int key = x%linear.size();
 	int collide = 0;
-	//cout << " Key " << key << " Collide " << collide << endl;
 	if(linear[key] == -1){
 		linear[key] = x;	
 	}
 	else{
 		for(int i=key; i<linear.size(); ++i){
-			//cout << "i " << i << " linear size " << linear.size() << endl;
 			if(linear[i] == -1){
 				linear[i] = x;
 				return collide;
@@ -95,7 +91,6 @@ int insertLinear(int x, vector<int> & linear)
 			}
 		}	
 		for(int i=0; i<key; ++i){
-			//cout << "i " << i << " linear size " << linear.size() << endl;
 			if(linear[i] == -1){
 				linear[i] = x;
 				return collide;
@@ -108,7 +103,6 @@ int insertLinear(int x, vector<int> & linear)
 		
 		
 	}
-	//cout << " Collide at the end" << collide << endl;
 	return collide;
 
 }
@@ -119,7 +113,6 @@ int insertQuad(int x, vector<int> & quad)
 	int collide = 0;
 	int i = 1;
 	
-	//cout << " Key " << key << " Collide " << collide << endl;
 	if(quad[key] == -1){
 		quad[key] = x;	
 		return collide; 
@@ -129,7 +122,6 @@ int insertQuad(int x, vector<int> & quad)
 			key = (x+i*i)%quad.size();
 			if(quad[key]== -1){
 				quad[key]=x;
-				//cout << "value getting inserted at i " << i << endl;
 				return collide;
 			}
 			else{
@@ -139,7 +131,6 @@ int insertQuad(int x, vector<int> & quad)
 
 		
 	}
-	//cout << " Collide at the end" << collide << endl;
 	return collide;
 	
 
@@ -153,7 +144,6 @@ int insertDuble(int x, int dubHash, vector<int> & duble)
 	int key = x%duble.size();
 	int collide = 0;
 	
-	//cout << " Key " << key << " Collide " << collide << endl;
 	if(duble[key] == -1){
 		duble[key] = x;	
 		return collide; 
@@ -164,7 +154,6 @@ int insertDuble(int x, int dubHash, vector<int> & duble)
 			
 			if(duble[key]== -1){
 				duble[key]=x;
-				//cout << "value getting inserted at i " << i << endl;
 				return collide;
 			}
 			else{
@@ -175,8 +164,6 @@ int insertDuble(int x, int dubHash, vector<int> & duble)
 
 		
 	}
-	//cout << " Collide at the end" << collide << endl;
 	return collide;
 	
-	//return 0;
 }
