@@ -110,7 +110,7 @@ class OrderedMap
 		int hash=0;
 		
 		for(int i=0; i<key.size(); ++i){
-			number=number + int(key[i])*3;
+			number=number + int(key[i])*7;
 		}
 		hash = number%MAP_MAX_SIZE;
 		
